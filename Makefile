@@ -1,7 +1,7 @@
-.PHONY: install test demo few-shot bad clean uninstall
+.PHONY: install test demo few-shot chain bad clean uninstall
 
 install:
-	cd prompt-pattern && raco pkg install --auto || raco pkg update
+	raco pkg install --auto --skip-installed prompt-pattern/
 
 test:
 	raco test prompt-pattern/tests.rkt
@@ -11,6 +11,9 @@ demo:
 
 few-shot:
 	racket examples/few-shot.rkt
+
+chain:
+	racket examples/chained.rkt
 
 bad:
 	racket examples/bad-pattern.rkt

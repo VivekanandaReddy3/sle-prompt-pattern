@@ -30,17 +30,25 @@ chrestomathy member, in the spirit of [MetaLib's `racket` member][metalib-racket
         #:question "Where do I find my invoice?")
 ```
 
-The expression returns a list of `{role, content}` hashes in the
-chat-completion shape, ready to be sent to an LLM API.
+The expression returns a list of `{role, content}` records (a Racket
+`jsexpr`) in the chat-completion shape — one `jsexpr->string` away from an
+API-ready request body.
 
-If a template references a slot that is **not** declared in `#:slots`,
-the program fails to compile — the check is done at macro-expansion
-time, not at runtime. See [`examples/bad-pattern.rkt`](examples/bad-pattern.rkt).
+If a template references a slot that is **not** declared in `#:slots`, the
+program fails to compile — the check runs at macro-expansion time, not at
+runtime — and, like a real compiler, the error points at the offending line
+in *your* file (see [`examples/bad-pattern.rkt`](examples/bad-pattern.rkt)):
+
+```
+examples/bad-pattern.rkt:9:2: define-pattern: slot {missing} is referenced
+  in a template but not declared in #:slots (name)
+  in: (user "Hello {name}, your account balance is {missing}.")
+```
 
 ## Build & run
 
 ```bash
-# 1. install the package (one-time)
+# 1. install the package (one-time, idempotent)
 make install
 
 # 2. run the tests
@@ -49,14 +57,17 @@ make test
 # 3. run the demos
 make demo        # examples/greeting.rkt
 make few-shot    # examples/few-shot.rkt
+make chain       # examples/chained.rkt — prompt chaining + JSON output
 make bad         # examples/bad-pattern.rkt — intentionally fails at compile time
 ```
 
 ## Feature coverage (MetaLib feature model)
 
-This table mirrors the feature model from
+The diagram and table below mirror the feature model from
 [MetaLib's Figure 2 / Section 4][metalib-paper] so that the experiment
 is directly comparable to other chrestomathy members.
+
+![Feature model — features realized by #lang prompt-pattern](feature-model.svg)
 
 | MetaLib feature                                     | Realization in `#lang prompt-pattern`                                |
 | --------------------------------------------------- | -------------------------------------------------------------------- |
@@ -92,9 +103,12 @@ grammar-workbench DSL and DSPy's embedded programming model).
 sle-prompt-pattern/
 ├── README.md                       this file
 ├── Makefile
+├── feature-model.svg               MetaLib feature model (coverage diagram)
+├── slides.md / slides.pdf          presentation (Marp source + export)
 ├── examples/                       sample programs in `#lang prompt-pattern`
 │   ├── greeting.rkt
 │   ├── few-shot.rkt
+│   ├── chained.rkt                 prompt chaining + JSON interchange
 │   └── bad-pattern.rkt             intentionally fails at compile time
 └── prompt-pattern/                 the Racket package
     ├── info.rkt                    package metadata

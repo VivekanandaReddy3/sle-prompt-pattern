@@ -45,18 +45,21 @@
   (syntax-parse stx
     [(_ name:id
         (~seq #:slots (slot:id ...))
-        (role:id template:str) ...)
+        (~and msg (role:id template:str)) ...)
      (define declared (map syntax-e (syntax->list #'(slot ...))))
-     (for ([m (in-list (syntax->list #'((role template) ...)))])
-       (syntax-parse m
-         [(_ t:str)
-          (for ([r (in-list (slot-refs-in (syntax-e #'t)))])
-            (unless (memq r declared)
-              (raise-syntax-error
-               'define-pattern
-               (format "slot {~a} is referenced in a template but not declared in #:slots ~a"
-                       r declared)
-               stx m)))]))
+     ;; Walk the *original* message forms (msg ...) in lock-step with their
+     ;; template strings. Using the original syntax (not a freshly built
+     ;; copy) means a reported error carries the source location of the
+     ;; offending line in the user's program, not of this macro.
+     (for ([m (in-list (syntax->list #'(msg ...)))]
+           [t (in-list (syntax->list #'(template ...)))])
+       (for ([r (in-list (slot-refs-in (syntax-e t)))])
+         (unless (memq r declared)
+           (raise-syntax-error
+            'define-pattern
+            (format "slot {~a} is referenced in a template but not declared in #:slots ~a"
+                    r declared)
+            m))))
      #'(define name
          (pattern 'name
                   '(slot ...)
@@ -64,7 +67,9 @@
 
 ;; ----------------------------------------------------------------------------
 ;; Runtime: fill templates with the supplied keyword arguments.
-;; Result is a list of {role, content} hashes — the chat-completion shape.
+;; Result is a list of {role, content} hasheqs — a `jsexpr` in Racket's
+;; `json` vocabulary, i.e. the chat-completion shape, ready to be written
+;; with `jsexpr->string` and POSTed to an LLM API.
 ;; ----------------------------------------------------------------------------
 
 (define render
@@ -79,8 +84,8 @@
        (unless (hash-has-key? env s)
          (error 'render "missing required slot: ~a" s)))
      (for/list ([m (in-list (pattern-messages pat))])
-       (hash 'role (symbol->string (message-role m))
-             'content (fill-template (message-template m) env))))))
+       (hasheq 'role (symbol->string (message-role m))
+               'content (fill-template (message-template m) env))))))
 
 (define (fill-template template env)
   (regexp-replace* #px"\\{([A-Za-z_][A-Za-z0-9_]*)\\}"
