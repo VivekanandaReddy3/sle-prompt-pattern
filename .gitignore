@@ -3,3 +3,4 @@ compiled/
 .DS_Store
 *.bak
 node_modules/
+STUDY_GUIDE.md
