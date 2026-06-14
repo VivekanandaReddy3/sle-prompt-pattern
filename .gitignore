@@ -4,3 +4,9 @@ compiled/
 *.bak
 node_modules/
 STUDY_GUIDE.md
+
+# slides are a separate deliverable (submitted via OLAT), not part of the code repo
+slides.pdf
+slides.pptx
+slides.md
+slides.html
