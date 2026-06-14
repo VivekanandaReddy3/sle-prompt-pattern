@@ -2,11 +2,11 @@
 
 ;; Two things this example shows.
 ;;
-;; 1. PROMPT CHAINING. Impromptu (Clariso & Cabot, MODELS 2023) offers an
-;;    explicit `chain` construct for feeding one prompt's result into the
-;;    next. In a *hosted* DSL we get that for free: a pattern is an ordinary
-;;    Racket value and `render` returns ordinary data, so a chain is just
-;;    plain Racket — no new language construct is needed.
+;; 1. PROMPT CHAINING. Impromptu (Clarisó & Cabot, MODELS 2023) provides
+;;    explicit composition — a `composer` construct and prompt chains — for
+;;    feeding one prompt's result into the next. In a *hosted* DSL we get that
+;;    for free: a pattern is an ordinary Racket value and `render` returns
+;;    ordinary data, so a chain is just plain Racket — no new construct needed.
 ;;
 ;; 2. INTERCHANGE FORMAT. `render` returns a `jsexpr`, so the prompt is
 ;;    one `jsexpr->string` away from being an API-ready JSON request body.

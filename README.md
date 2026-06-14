@@ -84,7 +84,7 @@ is directly comparable to other chrestomathy members.
 
 | Approach                                       | Style                          | Slot well-formedness checked at |
 | ---------------------------------------------- | ------------------------------ | ------------------------------- |
-| **Impromptu** (Clariso & Cabot, MODELS 2023)   | external DSL via **Langium**   | parse / validator time          |
+| **Impromptu** (Clarisó & Cabot, MODELS 2023)   | external DSL via **Langium**   | parse / validator time          |
 | **DSPy** (Khattab et al., 2023)                | embedded Python programming model | run time                     |
 | **`#lang prompt-pattern`** (this experiment)   | hosted DSL via **Racket** macros | **macro-expansion time**        |
 
@@ -124,7 +124,7 @@ sle-prompt-pattern/
 - Schauss, Lämmel, Härtel, Heinz, Klein, Härtel, Berger.
   *A Chrestomathy of DSL Implementations.* SLE 2017.
   [doi:10.1145/3136014.3136038](https://doi.org/10.1145/3136014.3136038)
-- Clariso, Cabot. *Model-Driven Prompt Engineering.* MODELS 2023.
+- Clarisó, Cabot. *Model-Driven Prompt Engineering.* MODELS 2023.
   [doi:10.1109/MODELS58315.2023.00020](https://doi.org/10.1109/MODELS58315.2023.00020).
   Toolkit: [SOM-Research/Impromptu](https://github.com/SOM-Research/Impromptu).
 - Khattab et al. *DSPy: Compiling Declarative Language Model Calls into
