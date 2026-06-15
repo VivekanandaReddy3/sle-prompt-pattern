@@ -48,8 +48,8 @@
 <text x="346" y="255" font-size="13.5" font-weight="700" fill="#0b3d6e">✓ Textual</text>
 <text x="346" y="272" font-size="10.5" fill="#3a6ea5">s-expressions</text>
 <rect x="334" y="294" width="174" height="44" rx="6" fill="#e8f1fb" stroke="#0b3d6e" stroke-width="2"/>
-<text x="346" y="313" font-size="13.5" font-weight="700" fill="#0b3d6e">✓ Parsing</text>
-<text x="346" y="330" font-size="10.5" fill="#3a6ea5">reader + macro</text>
+<text x="346" y="313" font-size="13.5" font-weight="700" fill="#0b3d6e">✓ Replacement</text>
+<text x="346" y="330" font-size="10.5" fill="#3a6ea5">macro expansion</text>
 <rect x="334" y="352" width="174" height="44" rx="6" fill="#ffffff" stroke="#c7ccd1" stroke-width="1.5" stroke-dasharray="4 3"/>
 <text x="346" y="371" font-size="13.5" font-weight="600" fill="#9aa1a8">Graphical</text>
 <text x="346" y="388" font-size="10.5" fill="#9aa1a8">visual syntax</text>
@@ -63,11 +63,11 @@
 <text x="578" y="313" font-size="13.5" font-weight="700" fill="#0b3d6e">✓ Piggyback</text>
 <text x="578" y="330" font-size="10.5" fill="#3a6ea5">scoping via Racket</text>
 <rect x="798" y="236" width="174" height="44" rx="6" fill="#e8f1fb" stroke="#0b3d6e" stroke-width="2"/>
-<text x="810" y="255" font-size="13.5" font-weight="700" fill="#0b3d6e">✓ Compilation</text>
-<text x="810" y="272" font-size="10.5" fill="#3a6ea5">macro → runtime value</text>
-<rect x="798" y="294" width="174" height="44" rx="6" fill="#e8f1fb" stroke="#0b3d6e" stroke-width="2"/>
-<text x="810" y="313" font-size="13.5" font-weight="700" fill="#0b3d6e">✓ Staging</text>
-<text x="810" y="330" font-size="10.5" fill="#3a6ea5">work at expansion time</text>
+<text x="810" y="255" font-size="13.5" font-weight="700" fill="#0b3d6e">✓ Staging</text>
+<text x="810" y="272" font-size="10.5" fill="#3a6ea5">work at expansion time</text>
+<rect x="798" y="294" width="174" height="44" rx="6" fill="#ffffff" stroke="#c7ccd1" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="810" y="313" font-size="13.5" font-weight="600" fill="#9aa1a8">Compilation</text>
+<text x="810" y="330" font-size="10.5" fill="#9aa1a8">to another language</text>
 <rect x="1030" y="236" width="174" height="44" rx="6" fill="#e8f1fb" stroke="#0b3d6e" stroke-width="2"/>
 <text x="1042" y="255" font-size="13.5" font-weight="700" fill="#0b3d6e">✓ Interpretation</text>
 <text x="1042" y="272" font-size="10.5" fill="#3a6ea5">render fills slots</text>

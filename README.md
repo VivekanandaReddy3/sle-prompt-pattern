@@ -73,11 +73,10 @@ is directly comparable to other chrestomathy members.
 | --------------------------------------------------- | -------------------------------------------------------------------- |
 | Abstract syntax — AST                               | `pattern` and `message` structs in [main.rkt](prompt-pattern/main.rkt) |
 | Concrete syntax — textual                           | s-expression surface syntax under a custom `#lang`                   |
-| Parsing — Text-to-AST                               | Racket's reader plus the `define-pattern` macro                      |
+| Concrete syntax — Replacement                       | The `define-pattern` macro realizes the syntax (syntax rules); MetaLib classes the Racket style as *replacement*, not parsing |
 | Static semantics — Analysis                         | Compile-time check that every `{slot}` reference is declared         |
 | Static semantics — Piggyback                        | Identifier binding is delegated to Racket's lexical scope            |
-| Translation semantics — Compilation                 | `define-pattern` expands to a `define` of a runtime `pattern` value  |
-| Translation semantics — Staging                     | Slot references are extracted at expansion time, not run time        |
+| Translation semantics — Staging                     | `define-pattern` expands at compile time into a `define` of a runtime `pattern` value — host-code generation (*staging*); not compilation to another language |
 | Dynamic semantics — Interpretation                  | `render` fills templates with the supplied keyword arguments         |
 
 ## Where this sits in the prompt-engineering DSL space
